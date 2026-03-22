@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Caption Generator</title>
+    <meta name="description" content="Generate algorithm-optimized social media captions with AI.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <span class="logo-text">Caption<span class="highlight">Gen</span></span>
+        </a>
+    </header>
+
+    <main class="main-container">
+        <section class="hero">
+            <h1>Elevate Your <span class="highlight">Social Media</span></h1>
+            <p>Generate 5 algorithm-optimized captions instantly for Instagram, TikTok, and Facebook.</p>
+        </section>
+
+        <section class="generator-card">
+            <form id="generator-form">
+
+
+                <div class="form-group">
+                    <label for="photo-upload">Upload Photo (Optional Preview)</label>
+                    <div class="upload-area" id="upload-area">
+                        <input type="file" id="photo-upload" accept="image/*" hidden>
+                        <div class="upload-prompt" id="upload-prompt">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            <p>Click to upload or drag and drop</p>
+                        </div>
+                        <img id="image-preview" class="hidden" alt="Preview">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="platform">Platform</label>
+                        <select id="platform" required>
+                            <option value="Instagram">Instagram</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="Facebook">Facebook</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tone">Tone</label>
+                        <select id="tone" required>
+                            <option value="Professional">Professional</option>
+                            <option value="Casual">Casual</option>
+                            <option value="Funny">Funny</option>
+                            <option value="Engaging">Engaging</option>
+                            <option value="Inspirational">Inspirational</option>
+                            <option value="Edgy">Edgy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="context">Further Context</label>
+                    <textarea id="context" placeholder="E.g., A photo of my new puppy at the park, mention how sunny it is today." rows="3" required></textarea>
+                </div>
+
+                <button type="submit" id="generate-btn" class="primary-btn">
+                    <span id="btn-text">Generate Captions</span>
+                    <span id="btn-loader" class="loader hidden"></span>
+                </button>
+            </form>
+        </section>
+
+        <section id="results-section" class="results-section hidden">
+            <h2>Your Optimized <span class="highlight">Captions</span></h2>
+            <div id="captions-container" class="captions-grid">
+                <!-- Captions will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 CaptionGen AI. All rights reserved.</p>
+        <a href="tos.html" class="footer-link">Terms of Service</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
