@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
         } catch (error) {
             console.error('Error:', error);
-            alert('An error occurred while generating captions. Please try again.');
+            alert(error.message || 'An error occurred while generating captions. Please try again.');
         } finally {
             setLoading(false);
         }

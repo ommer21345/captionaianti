@@ -2,9 +2,22 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Trust reverse proxy (crucial for accurate IP tracking on hosts like Railway/Render)
+app.set('trust proxy', 1);
+
+// Rate limiter: 5 requests per hour per IP
+const hourlyLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 5, 
+    message: { error: 'Rate limit exceeded: You can only generate 5 optimized captions per hour. Please try again later!' },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
 
 // Middleware
 app.use(cors());
@@ -14,7 +27,8 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 // Secure API endpoint that proxies exactly what the frontend used to do
-app.post('/api/generate', async (req, res) => {
+// Apply hourlyLimiter ONLY to this generation endpoint to secure it from spam
+app.post('/api/generate', hourlyLimiter, async (req, res) => {
     try {
         const { platform, tone, context, hasImage } = req.body;
         
